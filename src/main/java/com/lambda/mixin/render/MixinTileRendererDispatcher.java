@@ -1,6 +1,7 @@
 package com.lambda.mixin.render;
 
 import com.lambda.client.module.modules.render.Xray;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.tileentity.TileEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +14,11 @@ public class MixinTileRendererDispatcher {
 
     @Inject(method = "render(Lnet/minecraft/tileentity/TileEntity;FI)V", at = @At("HEAD"), cancellable = true)
     public void render(TileEntity tileEntityIn, float partialTicks, int destroyStage, CallbackInfo ci) {
-        if (Xray.shouldReplace(tileEntityIn.getBlockType().getDefaultState())) {
+        Block block;
+        //noinspection ConstantConditions
+        if (tileEntityIn != null
+            && (block = tileEntityIn.getBlockType()) != null
+            && Xray.shouldReplace(block.getDefaultState())) {
             ci.cancel();
         }
     }
