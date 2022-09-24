@@ -1,3 +1,9 @@
+This fork makes it possible to use lambda as a mod when launching the game from an IDE using forge 14.23.5.2768. The 
+main issues preventing you from doing this are that lambda depends on a class from a newer forge version and that the
+baritone lambda includes uses notch mappings. We solve this by using a
+[custom baritone version](https://github.com/3arthqu4ke/baritone/tree/3arthh4ck) which uses searge mappings. This will 
+not work with newer forge versions as those do not remap mods anymore.
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/lambda-client/assets/main/lambda%20logo%20text.svg" style="width: 69%">
 </p>
